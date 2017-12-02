@@ -96,7 +96,7 @@ onlyfiles = onlyfiles_validation_characters[:]
 
 print(len(onlyfiles))
 serialize_images(onlyfiles, "baza_walidujaca_znaki")
-print("baza_uczaca_znaki gotowa!")
+print("baza_walidujaca_znaki gotowa!")
 
 # random.shuffle(onlyfiles_emotions)
 #
