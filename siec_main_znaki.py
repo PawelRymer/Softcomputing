@@ -1,8 +1,3 @@
-'''
-Created on 28-07-2015
-
-@author: mpietrasik
-'''
 import os
 import theano
 import cPickle
@@ -86,14 +81,47 @@ def one_hot(x,n):
 
 def mnist(ntrain=60000,ntest=10000,onehot=True):
 
-    trX = np.load('baza_uczaca_znaki.npy')
-    print "Loaded training set!"
-    trY = np.asarray(np.load('baza_uczaca_znaki_labels.npy'), np.uint8)
-    print "Loaded training set labels!"
-    teX = np.load('baza_walidujaca_znaki.npy')
-    print "Loaded test set!"
-    teY = np.asarray(np.load('baza_walidujaca_znaki_lables.npy'), np.uint8)
-    print "Loaded test set labels!"
+    #fd = open(os.path.join(data_dir,'train-images.idx3-ubyte'))
+    #loaded = np.fromfile(file=fd,dtype=np.uint8)
+    #trX = loaded[16:].reshape((60000,28*28)).astype(np.float64)
+
+    #fd = open(os.path.join(data_dir,'train-labels.idx1-ubyte'))
+    #loaded = np.fromfile(file=fd,dtype=np.uint8)
+    #trY = loaded[8:].reshape((60000))
+
+    #fd = open(os.path.join(data_dir,'t10k-images.idx3-ubyte'))
+    #loaded = np.fromfile(file=fd,dtype=np.uint8)
+    #teX = loaded[16:].reshape((10000,28*28)).astype(np.float64)
+
+    #fd = open(os.path.join(data_dir,'t10k-labels.idx1-ubyte'))
+    #loaded = np.fromfile(file=fd,dtype=np.uint8)
+    #teY = loaded[8:].reshape((10000))
+
+    # fd = open('baza_uczaca_znaki.npy')
+    # loaded = np.fromfile(file=fd, dtype=np.uint8)
+    # trX = loaded.reshape((ntrain, 28*28)).astype(np.float64)
+    # print "Loaded training set!"
+    # fd = open('baza_uczaca_znaki_labels.npy')
+    # loaded = np.fromfile(file=fd, dtype=np.uint8)
+    # trY = loaded.reshape(ntest)
+    # print "Loaded training set labels!"
+    # fd = open('baza_walidujaca_znaki.npy')
+    # loaded = np.fromfile(file=fd, dtype=np.uint8)
+    # teX = loaded.reshape((ntrain, 28*28)).astype(np.float64)
+    # print "Loaded test set!"
+    # fd = open('baza_walidujaca_znaki_labels.npy')
+    # loaded = np.fromfile(file=fd, dtype=np.uint8)
+    # teY = loaded.reshape(ntest)
+    # print "Loaded test set labels!"
+
+    fname = 'baza_uczaca_znaki.npy'
+    trX = np.asarray(unpickle(fname, 28*28), np.uint8)
+    fname = 'baza_uczaca_znaki_labels.npy'
+    trY = np.asarray(unpickle(fname, 35), np.uint8)
+    fname = 'baza_walidujaca_znaki.npy'
+    teX = np.asarray(unpickle(fname, 28*28), np.uint8)
+    fname = 'baza_walidujaca_znaki_labels.npy'
+    teY = np.asarray(unpickle(fname, 35), np.uint8)
 
 
     randomize_training_set = np.arange(len(trX))
@@ -136,7 +164,7 @@ def save_weights(weights, fname):
 if __name__ == "__main__":
     # trX, teX, trY, teY = mnist(28709, 7178)
     # trX, teX, trY, teY = mnist(9441, 1251)
-    trX, teX, trY, teY = mnist(38150, 8429)
+    trX, teX, trY, teY = mnist(30000, 5000)
 
     trX = trX.reshape(-1, 1, 28, 28)
     teX = teX.reshape(-1, 1, 28, 28)
@@ -144,11 +172,11 @@ if __name__ == "__main__":
     X = T.tensor4(dtype='float64')
     Y = T.fmatrix()
 
-    w = init_weights((10, 1, 5, 5))
-    w2 = init_weights((10, 10, 5, 5))
-    w3 = init_weights((20, 10, 5, 5))
-    w4 = init_weights((20 * 3 * 3, 50))
-    w_o = init_weights((50, 7))
+    w = init_weights((4, 1, 3, 3))
+    w2 = init_weights((10, 4, 3, 3))
+    w3 = init_weights((20, 10, 3, 3))
+    w4 = init_weights((20 * 2 * 2, 50))
+    w_o = init_weights((50, 35))
 
     l1, l2, l3, l4, py_x = model(X, w, w2, w3, w4, 0., 0.)
     y_x = T.argmax(py_x, axis=1)
