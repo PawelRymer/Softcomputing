@@ -59,6 +59,7 @@ def serialize_images(images_path, output_file):
     out.close()
     label_out.close()
 
+# @TODO do ustawienia sciezka do zmniejszonych obrazkow zbioru uczacego:
 mypath_characters = "E:/Studia/Softcomputing/resized_out_foto/characters"
 onlyfiles_characters = []
 subfolders = []
@@ -78,7 +79,7 @@ print(len(onlyfiles))
 serialize_images(onlyfiles, "baza_uczaca_znaki")
 print("baza_uczaca_znaki gotowa!")
 
-
+# @TODO do ustawienia sciezka do zmniejszonych obrazkow zbioru walidujacego:
 mypath_characters = "E:/Studia/Softcomputing/resized_out_foto/validation_set_characters"
 onlyfiles_validation_characters = []
 for f in listdir(mypath_characters):
