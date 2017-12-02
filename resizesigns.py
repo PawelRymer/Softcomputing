@@ -7,9 +7,9 @@ from numpy import random
 
 ''' UWAGA!!! Nie mozna tworzyc katalogu do zapisu obrazow tam gdzie wykonujemy program ani w podkatalogach '''
 ''' Trzeba to robic w folderze wyzej albo jakimkolwiek innym bo przeszukujemy wszystkie podkatalogi '''
-# do ustawienia: 
+# @TODO do ustawienia:
 format = ".png"     # format foteczek wejsciowych
-size = 28           # rozmiar docelowy w pix         
+size = 28           # rozmiar docelowy w pix
 path_out_validate = "E:/Studia/Softcomputing/resized_out_foto/validation_set_characters/" # sciezka do zapisu zbioru uczacego
 path_out_train = "E:/Studia/Softcomputing/resized_out_foto/characters/" # sciezka do zapisu zbioru walidujacego
 path_in = os.getcwd()  # sciezka do folderu z foteczkami do przerobienia          
