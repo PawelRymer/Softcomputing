@@ -117,11 +117,11 @@ def mnist(ntrain=60000,ntest=10000,onehot=True):
     fname = 'baza_uczaca_znaki.npy'
     trX = np.asarray(unpickle(fname, 28*28), np.uint8)
     fname = 'baza_uczaca_znaki_labels.npy'
-    trY = np.asarray(unpickle(fname, 35), np.uint8)
+    trY = np.asarray(unpickle(fname, 36), np.uint8)
     fname = 'baza_walidujaca_znaki.npy'
     teX = np.asarray(unpickle(fname, 28*28), np.uint8)
     fname = 'baza_walidujaca_znaki_labels.npy'
-    teY = np.asarray(unpickle(fname, 35), np.uint8)
+    teY = np.asarray(unpickle(fname, 36), np.uint8)
 
 
     randomize_training_set = np.arange(len(trX))
@@ -164,7 +164,7 @@ def save_weights(weights, fname):
 if __name__ == "__main__":
     # trX, teX, trY, teY = mnist(28709, 7178)
     # trX, teX, trY, teY = mnist(9441, 1251)
-    trX, teX, trY, teY = mnist(30000, 5000)
+    trX, teX, trY, teY = mnist(194909, 35813)
 
     trX = trX.reshape(-1, 1, 28, 28)
     teX = teX.reshape(-1, 1, 28, 28)
@@ -176,7 +176,7 @@ if __name__ == "__main__":
     w2 = init_weights((10, 4, 3, 3))
     w3 = init_weights((20, 10, 3, 3))
     w4 = init_weights((20 * 2 * 2, 50))
-    w_o = init_weights((50, 35))
+    w_o = init_weights((50, 36))
 
     l1, l2, l3, l4, py_x = model(X, w, w2, w3, w4, 0., 0.)
     y_x = T.argmax(py_x, axis=1)
