@@ -81,39 +81,6 @@ def one_hot(x,n):
 
 def mnist(ntrain=60000,ntest=10000,onehot=True):
 
-    #fd = open(os.path.join(data_dir,'train-images.idx3-ubyte'))
-    #loaded = np.fromfile(file=fd,dtype=np.uint8)
-    #trX = loaded[16:].reshape((60000,28*28)).astype(np.float64)
-
-    #fd = open(os.path.join(data_dir,'train-labels.idx1-ubyte'))
-    #loaded = np.fromfile(file=fd,dtype=np.uint8)
-    #trY = loaded[8:].reshape((60000))
-
-    #fd = open(os.path.join(data_dir,'t10k-images.idx3-ubyte'))
-    #loaded = np.fromfile(file=fd,dtype=np.uint8)
-    #teX = loaded[16:].reshape((10000,28*28)).astype(np.float64)
-
-    #fd = open(os.path.join(data_dir,'t10k-labels.idx1-ubyte'))
-    #loaded = np.fromfile(file=fd,dtype=np.uint8)
-    #teY = loaded[8:].reshape((10000))
-
-    # fd = open('baza_uczaca_znaki.npy')
-    # loaded = np.fromfile(file=fd, dtype=np.uint8)
-    # trX = loaded.reshape((ntrain, 28*28)).astype(np.float64)
-    # print "Loaded training set!"
-    # fd = open('baza_uczaca_znaki_labels.npy')
-    # loaded = np.fromfile(file=fd, dtype=np.uint8)
-    # trY = loaded.reshape(ntest)
-    # print "Loaded training set labels!"
-    # fd = open('baza_walidujaca_znaki.npy')
-    # loaded = np.fromfile(file=fd, dtype=np.uint8)
-    # teX = loaded.reshape((ntrain, 28*28)).astype(np.float64)
-    # print "Loaded test set!"
-    # fd = open('baza_walidujaca_znaki_labels.npy')
-    # loaded = np.fromfile(file=fd, dtype=np.uint8)
-    # teY = loaded.reshape(ntest)
-    # print "Loaded test set labels!"
-
     fname = 'baza_uczaca_znaki.npy'
     trX = np.asarray(unpickle(fname, 28*28), np.uint8)
     fname = 'baza_uczaca_znaki_labels.npy'
@@ -143,13 +110,6 @@ def mnist(ntrain=60000,ntest=10000,onehot=True):
     teX = teX[:ntest]
     teY = teY[:ntest]
 
-   # if onehot:
-   #     trY = one_hot(trY, 2)
-   #     teY = one_hot(teY, 2)
-   # else:
-   #     trY = np.asarray(trY)
-   #     teY = np.asarray(teY)
-
     return trX,teX,trY,teY
 
 def chunks(l, n):
@@ -162,8 +122,6 @@ def save_weights(weights, fname):
             cPickle.dump(w, f)
 
 if __name__ == "__main__":
-    # trX, teX, trY, teY = mnist(28709, 7178)
-    # trX, teX, trY, teY = mnist(9441, 1251)
     trX, teX, trY, teY = mnist(194909, 35813)
 
     trX = trX.reshape(-1, 1, 28, 28)
