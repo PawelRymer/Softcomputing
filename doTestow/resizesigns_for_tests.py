@@ -8,7 +8,7 @@ from numpy import random
 ''' UWAGA!!! Nie mozna tworzyc katalogu do zapisu obrazow tam gdzie wykonujemy program ani w podkatalogach '''
 ''' Trzeba to robic w folderze wyzej albo jakimkolwiek innym bo przeszukujemy wszystkie podkatalogi '''
 # @TODO do ustawienia:
-format = ".png"     # format foteczek wejsciowych
+format = ".jpg"     # format foteczek wejsciowych
 size = 28           # rozmiar docelowy w pix
 path_out_validate = "E:/Studia/Softcomputing/resized_out_foto_tests/validation_set_characters/" # sciezka do zapisu zbioru uczacego
 path_out_test = "E:/Studia/Softcomputing/resized_out_foto_tests/characters/" # sciezka do zapisu zbioru walidujacego
@@ -33,7 +33,7 @@ def get_images():
                 totalTest = 0
                 number = 1
             charFolderHeader = foldersNames[4]
-            output = 'char_' + foldersNames[4] + '_' + str(number) + format
+            output = 'char_' + foldersNames[4] + '_' + str(number) + str(number) + format
             number += 1
             # .convert('L') konwertuje do skali szarosci
             # usun jesli chcesz kolorowe
